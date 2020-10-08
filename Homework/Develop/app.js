@@ -1,19 +1,73 @@
 const Manager = require("./lib/Manager");
+const Employee = require('./lib/Employee')
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
+const render = require("./lib/htmlRenderer.js");
+const Choices = require("inquirer/lib/objects/choices");
 
 
 // Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
 
+// this is the first question array which will determine if the person is and employee, manager, engineer, or intern and further the questioning based on the user's response
+firstQuestion = [
+    {
+        type: 'list',
+        name: 'Role',
+        message: 'What is your role in the workplace?',
+        choices: ['Employee', 'Manager', 'Engineer', 'Intern']
+    }
+]
+
+// this is the first inquirer call which will prompt the first question
+inquirer
+    .prompt(firstQuestion).then(answer => {
+        // based on the answer to the first question, inquirer will send out the correct questions to the user input
+        if (answer = 'Employee'){
+           Employee.employeeQuestions();
+        }
+        if (answer = 'Manager'){
+
+        }
+        if ( answer = 'Engineer'){
+
+        }
+        if (answer = 'Intern'){
+
+        }
+    })
+// and to create objects for each team member (using the correct classes as blueprints!)
+class Enmployee {
+    constructor(name, id, email){
+        this.name = name;
+        this.id = id;
+        this.email = email;
+    }
+    // function to console.log the name of the employee
+    getName() {
+        console.log(name);
+    }
+    // function to get the id of the employee
+    getId(){
+        console.log(id);
+    }
+    // function to console.log the email of the employee
+    getEmail(){
+        console.log(email);
+    }
+    // get the role of the employee
+    getRole(){
+        console.log(name +'  is an Employee!');
+    }
+
+}
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
